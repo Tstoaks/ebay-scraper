@@ -19,6 +19,7 @@ ngapp.service('ebayService', function (dbService) {
             let splitUrl = item.link.split('/');
             let indexOfQMark = splitUrl[5].indexOf('?');
             let itemID = splitUrl[5].slice(0, indexOfQMark);
+            if (items.some((item) => itemID === item.itemID)) return;
             items.push({link, itemID, pubDate, title});
         });
         return items;
@@ -30,6 +31,8 @@ ngapp.service('ebayService', function (dbService) {
             let pageItems = await service.getPageItems(searchTerm, page);
             for (let i = 0; i < pageItems.length; i++) {
                 let item = pageItems[i];
+                if (items.some((item2) => item.itemID === item2.itemID)) continue;
+
                 await service.getItemDescription(item);
                 if (service.trackKeywords(item, keywords)) {
                     items.push(item);
@@ -83,7 +86,7 @@ ngapp.service('ebayService', function (dbService) {
 
             if (childNode.nodeType === TEXT_NODE) {
                 let text = childNode.textContent;
-                if (text.trim().length > 0){
+                if (text.trim().length > 0) {
                     textContent.push(text);
                 }
             } else if (service.checkIfVisible(childNode)) {
