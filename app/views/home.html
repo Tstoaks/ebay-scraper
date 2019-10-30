@@ -1,0 +1,42 @@
+<div ng-show="connected" class="flex-container">
+    <h1>Ebay Scraper</h1>
+
+    <section>
+        <span>Search Term:</span>
+        <input ng-model="searchTerm" type="text">
+    </section>
+
+    <section>
+        <span>Keyword(s) to search the description for*:</span>
+        <input ng-model="keywords" type="text">
+    </section>
+
+    <section>
+        <span>Pages to Search:</span>
+        <select ng-model="numPages">
+            <option>1</option>
+            <option>2</option>
+            <option>3</option>
+            <option>4</option>
+            <option>5</option>
+            <option>6</option>
+            <option>7</option>
+            <option>8</option>
+            <option>9</option>
+            <option>10</option>
+            <option>11</option>
+            <option>12</option>
+            <option>13</option>
+            <option>14</option>
+            <option>15</option>
+        </select>
+    </section>
+
+    <p>*Use comas to separate terms</p>
+
+    <button ng-click="performSearch()" type="button">GO!</button>
+</div>
+
+<div ng-hide="connected">
+    <h1>Connecting to database...</h1>
+</div>

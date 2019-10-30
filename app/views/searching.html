@@ -1,0 +1,44 @@
+<div class="flex-container" ng-hide="loaded">
+    <h1>Searching...</h1>
+    <p>Results Found: {{resultsFound}} </p>
+</div>
+
+<div class="full-page" ng-show="loaded">
+    <h1>Done! - Number of listings found with provided keywords: {{resultsFound}}</h1> <button ng-click="reset()" type="button">Reset?</button>
+    <table style="width:100%">
+        <tr>
+            <th>
+                <h1>Listing Title</h1>
+                <label>
+                    <select ng-model="sortAlpha" ng-change="sortAlphabetically()">
+                        <option value="title(a-z)">(A-Z)</option>
+                        <option value="title(z-a)">(Z-A)</option>
+                    </select>
+                </label>
+            <th>
+                <h1>Date Posted</h1>
+                <label>
+                    <select ng-model="sortDate" ng-change="sortByDate()">
+                        <option value="newest-first">Newest</option>
+                        <option value="oldest-first">Oldest</option>
+                    </select>
+                </label>
+            </th>
+            <th>
+                <h1>Keywords Matched</h1>
+                <label>
+                    <select ng-model="sortMatched" ng-change="sortByMatched()">
+                        <option value="most-matched">Most Matched</option>
+                        <option value="least-matched">Least Matched</option>
+                    </select>
+                </label>
+            </th>
+        </tr>
+        <tr ng-repeat="item in results">
+            <td><a ng-href="{{item.link}}">{{item.title}}</a></td>
+            <td>{{item.pubDate}}</td>
+            <td>{{item.foundKeywords}}</td>
+        </tr>
+    </table>
+</div>
+
