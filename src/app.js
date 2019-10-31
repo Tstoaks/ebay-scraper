@@ -15,5 +15,8 @@ ngapp.config(function ($urlMatcherFactoryProvider) {
 require('./services/dbService');
 require('./services/ebayService');
 require('./services/urlService');
-require('./views/search');
+require('./services/presetService');
+require('./views/addModify');
 require('./views/home');
+require('./views/modifySelected');
+require('./views/search');

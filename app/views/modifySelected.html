@@ -1,0 +1,29 @@
+<div class="flex-container">
+    <section>
+        <span>Search Term:</span>
+        <input ng-model="searchTerm" type="text">
+    </section>
+
+    <section>
+        <span>Preset Name:</span>
+        <input ng-model="presetName" type="text">
+    </section>
+
+    <section>
+        <span>Add Keyword:</span>
+        <input ng-model="keyword" type="text">
+        <button ng-click="addKeyword()" type="button">Add Keyword</button>
+    </section>
+
+    <section>
+        <h1>Current Keywords for {{presetName}}:</h1>
+        <h2>{{storedKeywords}}</h2>
+    </section>
+
+    <section>
+        <button ng-click="save()" type="button">Save</button>
+        <button ng-click="goBack()" type="button">Go Back</button>
+    </section>
+</div>
+
+

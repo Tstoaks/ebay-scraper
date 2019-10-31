@@ -1,4 +1,4 @@
-ngapp.controller('homeController', function ($scope, $state, urlService, dbService) {
+ngapp.controller('homeController', function ($scope, $state, urlService, dbService, presetService) {
     urlService.init();
     dbService.connect().then(function () {
         $scope.$applyAsync(function () {
@@ -9,15 +9,16 @@ ngapp.controller('homeController', function ($scope, $state, urlService, dbServi
         close();
     });
 
-    $scope.searchTerm = '';
-    $scope.keywords = '';
+    $scope.presets = presetService.getPresets();
     $scope.numPages = '1';
     $scope.performSearch = () => {
         $state.go('searching', {
-            searchTerm: $scope.searchTerm,
-            keywords: $scope.keywords,
+            preset: $scope.preset,
             numPages: $scope.numPages
         });
+    };
+    $scope.modify = () => {
+        $state.go('addModify', {});
     };
 });
 

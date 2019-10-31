@@ -2,13 +2,11 @@
     <h1>Ebay Scraper</h1>
 
     <section>
-        <span>Search Term:</span>
-        <input ng-model="searchTerm" type="text">
-    </section>
-
-    <section>
-        <span>Keyword(s) to search the description for*:</span>
-        <input ng-model="keywords" type="text">
+        <span>Preset:</span>
+        <select ng-model="preset">
+            <option>Select Preset</option>
+            <option ng-repeat="preset in presets">{{preset.presetName}}</option>
+        </select>
     </section>
 
     <section>
@@ -32,9 +30,9 @@
         </select>
     </section>
 
-    <p>*Use comas to separate terms</p>
+    <button ng-click="performSearch()" type="button">Search</button>
+    <button ng-click="modify()" type="button">Add/Modify Presets</button>
 
-    <button ng-click="performSearch()" type="button">GO!</button>
 </div>
 
 <div ng-hide="connected">
