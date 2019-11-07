@@ -1,5 +1,6 @@
 ngapp.controller('homeController', function ($scope, $state, urlService, dbService, presetService) {
     urlService.init();
+    presetService.loadPresets();
     dbService.connect().then(function () {
         $scope.$applyAsync(function () {
             $scope.connected = true
