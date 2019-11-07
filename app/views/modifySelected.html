@@ -1,12 +1,12 @@
 <div class="flex-container">
     <section>
         <span>Search Term:</span>
-        <input ng-model="searchTerm" type="text">
+        <input ng-model="preset.searchTerm" type="text">
     </section>
 
     <section>
         <span>Preset Name:</span>
-        <input ng-model="presetName" type="text">
+        <input ng-model="preset.presetName" type="text">
     </section>
 
     <section>
@@ -16,8 +16,8 @@
     </section>
 
     <section>
-        <h1>Current Keywords for {{presetName}}:</h1>
-        <h2>{{storedKeywords}}</h2>
+        <h1>Current Keywords for {{preset.presetName}}:</h1>
+        <h2>{{preset.keywords}}</h2>
     </section>
 
     <section>

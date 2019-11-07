@@ -3,11 +3,11 @@
 
     <section>
         <span>Preset:</span>
-        <select ng-model="preset">
+        <select ng-model="presetName">
             <option ng-Value="null" disabled>Choose your preset</option>
-            <option>NAME OF PRESET</option>
+            <option ng-repeat="preset in presets">{{preset.presetName}}</option>
         </select>
-        <button ng-click="addNewPreset()" type="button">Modify</button>
+        <button ng-click="modify()" type="button">Modify</button>
     </section>
 
     <section>

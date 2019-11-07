@@ -64,6 +64,7 @@ ngapp.controller('searchController', function ($scope, $state, $stateParams, eba
                 });
             }
         };
+
         $scope.reset = () => {
             $state.go('home', {});
         };

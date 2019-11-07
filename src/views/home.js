@@ -11,15 +11,22 @@ ngapp.controller('homeController', function ($scope, $state, urlService, dbServi
     });
 
     $scope.presets = presetService.getPresets();
+    if ($scope.presets.length > 0) {
+        $scope.presetName = $scope.presets[0].presetName;
+    }
+
     $scope.numPages = '1';
+
     $scope.performSearch = () => {
         $state.go('searching', {
             presetName: $scope.presetName,
             numPages: $scope.numPages
         });
     };
+
     $scope.modify = () => {
-        $state.go('addModify', {});
+        $state.go('addModify', {
+        });
     };
 });
 

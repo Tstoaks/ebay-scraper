@@ -1,22 +1,30 @@
 ngapp.controller('modifySelectedController', function ($scope, $state, $stateParams, presetService) {
-    $scope.searchTerm = '';
-    $scope.presetName = '';
+    let editing = Boolean($stateParams.presetName);
+
+    if (editing) {
+        $scope.preset = presetService.getPreset($stateParams.presetName);
+    } else {
+        $scope.preset = {
+            searchTerm: '',
+            presetName: '',
+            keywords: []
+        };
+    }
+
     $scope.keyword = '';
-    $scope.storedKeywords = [];
+
     $scope.addKeyword = () => {
-        $scope.storedKeywords.push($scope.keyword.toLowerCase());
+        $scope.preset.keywords.push($scope.keyword.toLowerCase());
         $scope.keyword = '';
     };
-    $scope.save = () => {
-        let preset = {
-            searchTerm: $scope.searchTerm,
-            presetName: $scope.presetName,
-            keywords: $scope.storedKeywords
-        };
 
-        presetService.storeGlobalPreset(preset);
+    $scope.save = () => {
+        if (!editing) {
+            presetService.storeGlobalPreset($scope.preset);
+        }
         $state.go('home', {});
     };
+
     $scope.goBack = () => {
         $state.go('addModify', {});
     };
@@ -24,7 +32,7 @@ ngapp.controller('modifySelectedController', function ($scope, $state, $statePar
 
 ngapp.config(['$stateProvider', function ($stateProvider) {
     $stateProvider.state('modifySelected', {
-        url: '/modifySelected',
+        url: '/modifySelected?presetName',
         templateUrl: 'views/modifySelected.html',
         controller: 'modifySelectedController'
     });

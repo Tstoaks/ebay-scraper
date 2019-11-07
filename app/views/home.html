@@ -4,7 +4,7 @@
     <section>
         <span>Preset:</span>
         <select ng-model="presetName">
-            <option>Select Preset</option>
+            <option ng-Value="null" disabled>Select Preset</option>
             <option ng-repeat="preset in presets">{{preset.presetName}}</option>
         </select>
     </section>
