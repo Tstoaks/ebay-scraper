@@ -4,14 +4,14 @@ ngapp.controller('modifySelectedController', function ($scope, $state, $statePar
     $scope.keyword = '';
     $scope.storedKeywords = [];
     $scope.addKeyword = () => {
-        $scope.storedKeywords.push($scope.keyword);
+        $scope.storedKeywords.push($scope.keyword.toLowerCase());
         $scope.keyword = '';
     };
     $scope.save = () => {
         let preset = {
             searchTerm: $scope.searchTerm,
             presetName: $scope.presetName,
-            keywords: $scope.keyword
+            keywords: $scope.storedKeywords
         };
 
         presetService.storeGlobalPreset(preset);

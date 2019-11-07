@@ -64,16 +64,15 @@ ngapp.controller('searchController', function ($scope, $state, $stateParams, eba
                 });
             }
         };
-    $scope.reset = () => {
-        $state.go('home', {
-        });
-    };
+        $scope.reset = () => {
+            $state.go('home', {});
+        };
     }
 );
 
 ngapp.config(['$stateProvider', function ($stateProvider) {
     $stateProvider.state('searching', {
-        url: '/search?searchTerm&keywords&numPages',
+        url: '/search?presetName&numPages',
         templateUrl: 'views/searching.html',
         controller: 'searchController'
     });

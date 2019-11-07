@@ -1,7 +1,7 @@
 import RssParser from "rss-parser";
 import request from "request";
 
-ngapp.service('ebayService', function (dbService) {
+ngapp.service('ebayService', function (dbService, presetService) {
     let service = this;
     let rssParser = new RssParser();
     let ebayScrapeDelay = 250;
@@ -25,16 +25,18 @@ ngapp.service('ebayService', function (dbService) {
         return items;
     };
 
-    service.search = async function ({searchTerm, keywords, numPages}) {
+    service.search = async function ({presetName, numPages}) {
+        let preset = presetService.getPreset(presetName);
         let items = [];
         for (let page = 1; page <= numPages; page++) {
-            let pageItems = await service.getPageItems(searchTerm, page);
+            console.log(preset);
+            let pageItems = await service.getPageItems(preset.searchTerm, page);
             for (let i = 0; i < pageItems.length; i++) {
                 let item = pageItems[i];
                 if (items.some((item2) => item.itemID === item2.itemID)) continue;
 
                 await service.getItemDescription(item);
-                if (service.trackKeywords(item, keywords)) {
+                if (service.trackKeywords(item, preset.keywords)) {
                     items.push(item);
                     service.onResultsFound(1);
                 }
@@ -101,11 +103,10 @@ ngapp.service('ebayService', function (dbService) {
     };
 
     service.trackKeywords = function (item, keywords) {
-        let keywordArr = keywords.toLowerCase().split(",");
         let matched = false;
         item.foundKeywords = [];
 
-        keywordArr.forEach(function (keyword) {
+        keywords.forEach(function (keyword) {
             let keywordFound = item.description.includes(keyword);
             matched = matched || keywordFound;
             if (keywordFound) {

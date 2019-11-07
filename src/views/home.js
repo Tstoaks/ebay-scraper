@@ -13,7 +13,7 @@ ngapp.controller('homeController', function ($scope, $state, urlService, dbServi
     $scope.numPages = '1';
     $scope.performSearch = () => {
         $state.go('searching', {
-            preset: $scope.preset,
+            presetName: $scope.presetName,
             numPages: $scope.numPages
         });
     };
