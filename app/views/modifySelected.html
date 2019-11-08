@@ -17,7 +17,7 @@
 
     <section>
         <h1>Current Keywords for {{preset.presetName}}:</h1>
-        <h2>{{preset.keywords}}</h2>
+        <h2 ng-repeat="keyword in preset.keywords">{{keyword}}</h2>
     </section>
 
     <section>
