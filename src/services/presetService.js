@@ -16,7 +16,6 @@ ngapp.service('presetService', function () {
 
     service.storeGlobalPreset = function (preset) {
         presets.push(preset);
-        service.savePresets();
     };
 
     service.getPreset = function (presetName) {

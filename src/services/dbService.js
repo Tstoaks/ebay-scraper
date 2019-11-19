@@ -8,6 +8,7 @@ ngapp.service('dbService', function () {
             service.db = new sqlite3.Database('./ebayScraper.db', (err) => {
                 if (err) return reject(new Error(err));
                 service.createTables().then(resolve, reject);
+                service.connected = true;
             });
         });
     };

@@ -1,14 +1,19 @@
 ngapp.controller('homeController', function ($scope, $state, urlService, dbService, presetService) {
-    urlService.init();
-    presetService.loadPresets();
-    dbService.connect().then(function () {
-        $scope.$applyAsync(function () {
-            $scope.connected = true
+    $scope.connected = dbService.connected;
+
+    if (!window.initalize){
+        urlService.init();
+        presetService.loadPresets();
+        dbService.connect().then(function () {
+            $scope.$applyAsync(function () {
+                $scope.connected = true
+            });
+        }, function () {
+            alert(`Failed to connect to database!`);
+            close();
         });
-    }, function () {
-        alert(`Failed to connect to database!`);
-        close();
-    });
+        window.initalize = true;
+    }
 
     $scope.presets = presetService.getPresets();
     if ($scope.presets.length > 0) {

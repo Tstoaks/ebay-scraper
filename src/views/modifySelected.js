@@ -34,6 +34,7 @@ ngapp.controller('modifySelectedController', function ($scope, $state, $statePar
         if (!editing) {
             presetService.storeGlobalPreset($scope.preset);
         }
+        presetService.savePresets();
         $state.go('home', {});
     };
 
