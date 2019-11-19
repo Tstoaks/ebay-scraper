@@ -16,12 +16,17 @@ ngapp.controller('modifySelectedController', function ($scope, $state, $statePar
     let keywordShouldBeAdded = (keyword) => {
         if (keyword === '') return false;
         let keywordToBeStored = keyword.toLowerCase();
-
         return !$scope.preset.keywords.includes(keywordToBeStored);
     };
 
+    $scope.enter = (event) => {
+        if (event.key === "Enter") $scope.addKeyword();
+    };
+
     $scope.addKeyword = () => {
-        if (keywordShouldBeAdded($scope.keyword)) $scope.preset.keywords.push($scope.keyword.toLowerCase());
+        if (keywordShouldBeAdded($scope.keyword)) {
+            $scope.preset.keywords.push($scope.keyword.toLowerCase());
+        }
         $scope.keyword = '';
     };
 

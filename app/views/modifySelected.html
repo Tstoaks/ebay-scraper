@@ -1,4 +1,4 @@
-<h2 class="flex-container">
+<div class="flex-container">
     <section>
         <span>Search Term:</span>
         <input ng-model="preset.searchTerm" type="text">
@@ -11,7 +11,7 @@
 
     <section>
         <span>Add Keyword:</span>
-        <input ng-model="keyword" type="text">
+        <input ng-keydown="enter($event)" ng-model="keyword" type="text">
         <button ng-click="addKeyword()" type="button">Add Keyword</button>
     </section>
 
