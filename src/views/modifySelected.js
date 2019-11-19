@@ -13,8 +13,15 @@ ngapp.controller('modifySelectedController', function ($scope, $state, $statePar
 
     $scope.keyword = '';
 
+    let keywordShouldBeAdded = (keyword) => {
+        if (keyword === '') return false;
+        let keywordToBeStored = keyword.toLowerCase();
+
+        return !$scope.preset.keywords.includes(keywordToBeStored);
+    };
+
     $scope.addKeyword = () => {
-        $scope.preset.keywords.push($scope.keyword.toLowerCase());
+        if (keywordShouldBeAdded($scope.keyword)) $scope.preset.keywords.push($scope.keyword.toLowerCase());
         $scope.keyword = '';
     };
 
@@ -23,6 +30,10 @@ ngapp.controller('modifySelectedController', function ($scope, $state, $statePar
             presetService.storeGlobalPreset($scope.preset);
         }
         $state.go('home', {});
+    };
+
+    $scope.delete = (index) => {
+        $scope.preset.keywords.splice(index, 1);
     };
 
     $scope.goBack = () => {

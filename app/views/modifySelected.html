@@ -1,4 +1,4 @@
-<div class="flex-container">
+<h2 class="flex-container">
     <section>
         <span>Search Term:</span>
         <input ng-model="preset.searchTerm" type="text">
@@ -17,7 +17,12 @@
 
     <section>
         <h1>Current Keywords for {{preset.presetName}}:</h1>
-        <h2 ng-repeat="keyword in preset.keywords">{{keyword}}</h2>
+        <h2 ng-repeat="keyword in preset.keywords">
+            {{keyword}}
+            <button class="x" ng-click="delete($index)">
+                X
+            </button>
+        </h2>
     </section>
 
     <section>
@@ -25,5 +30,3 @@
         <button ng-click="goBack()" type="button">Go Back</button>
     </section>
 </div>
-
-

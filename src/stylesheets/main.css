@@ -21,6 +21,14 @@ table, th, td {
   padding: 10px;
 }
 
+.x {
+  position: relative;
+  background: red;
+  color: white;
+  top: -10px;
+  right: -10px;
+}
+
 .flex-container {
   display: flex;
   flex-direction: column;
