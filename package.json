@@ -31,7 +31,7 @@
     "release": "npm test && webpack --config=build/webpack.app.config.js --env=production && electron-builder"
   },
   "dependencies": {
-    "angular": "^1.7.9",
+    "angular": "^1.8.0",
     "angular-route": "^1.7.8",
     "angular-ui-router": "^0.4.3",
     "dom-parser": "^0.1.6",
